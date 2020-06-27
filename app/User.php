@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\journal;
+use App\Comment;
+use App\Timetable;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -49,4 +52,12 @@ class User extends Authenticatable implements JWTSubject
     public function timetable(){
         return $this->hasMany(TimeTable::class);
     }
+    public function journal(){
+        return $this->hasMany(journal::class);
+    }
+
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
+
 }
