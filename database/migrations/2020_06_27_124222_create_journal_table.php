@@ -16,7 +16,7 @@ class CreateJournalTable extends Migration
         Schema::create('journal', function (Blueprint $table) {
             //tabel columns and relationships
             //one user many journal entries
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('about');
             $table->string('photo')->default('');

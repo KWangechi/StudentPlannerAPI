@@ -15,6 +15,7 @@ class JournalController extends Controller
 
         $journal=new journal;
         $journal->user_id =Auth::user()->id;
+        
         $journal->about= $request->about;
 
         //CHECK IF JOURNAL ENTRY HAS A PHOTO
@@ -84,17 +85,25 @@ class JournalController extends Controller
 }
 
 public function journal(){
-    $journal= journal::orderBy('id','desc')->get();
-  /* foreach($journal as $journal){
-        //GET USER OF THE JOURNAL ENTRY
+    $journal= journal::orderBy('id','asc')->get();
+
+
+
+
+
+  foreach($journal as $journal){
+     //   GET USER OF THE JOURNAL ENTRY
 
         $journal->user;
-
+        
         //GET COMMENTS COUNT
 
+      //  $journal['commentCount'] = 
         $journal['commentCount'] = count($journal->comment);
 
-    }*/
+    }
+
+
   return response()->json([
       'success'=>true,
       'journal'=>$journal
