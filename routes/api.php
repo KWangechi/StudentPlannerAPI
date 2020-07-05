@@ -49,4 +49,26 @@ Route::post('comment/update', 'API\CommentsController@update')->middleware('jwtA
 Route::get('journal/comment', 'API\CommentsController@comment')->middleware('jwtAuth');
 
 
+//routes for tasks
+Route::get('tasks' , 'API\TaskController@tasks');
+Route::post('task/create', 'API\TaskController@create');
+Route::post('task/update', 'API\TaskController@update');
+Route::post('task/delete' , 'API\TaskController@destroy');
+
+//routes for the year
+Route::get('years' , 'API\YearController@years');
+Route::post('year/create', 'API\YearController@create');
+Route::post('year/update', 'API\YearController@update');
+Route::post('year/delete' , 'API\YearController@destroy');
+
+
+
+//routes for the semester
+Route::get('semesters' , 'API\SemesterController@semesters');
+Route::post('semester/create', 'API\SemesterController@create');
+Route::post('semester/update', 'API\SemesterController@update');
+Route::post('semester/delete' , 'API\SemesterController@destroy');
+
+
+
 

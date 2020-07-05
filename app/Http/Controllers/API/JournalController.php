@@ -9,6 +9,8 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\User;
+
+
 class JournalController extends Controller
 {
     public function create (Request $request){

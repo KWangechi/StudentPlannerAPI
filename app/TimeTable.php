@@ -4,6 +4,7 @@ namespace App;
 
 use App\User;
 use App\Category;
+use App\Task;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,8 +23,14 @@ class TimeTable extends Model
         return $this->belongsTo(User::class);
     }
 
-    //a timetable has many categories
+    //a timetable belongs to a category
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    //a timeatable has many tasks
+    public function task(){
+        return $this->hasMany(Task::class);
+
     }
 }
