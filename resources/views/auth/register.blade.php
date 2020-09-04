@@ -26,6 +26,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="campus" class="col-md-4 col-form-label text-md-right">{{ __('campus') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="campus" type="text" class="form-control @error('campus') is-invalid @enderror" name="campus" value="{{ old('campus') }}" required autocomplete="campus" autofocus>
+
+                                @error('campus')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
