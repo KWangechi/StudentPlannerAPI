@@ -26,7 +26,7 @@ class CommentsController extends Controller
     public function update(Request $request){
         $comment= Comment::find($request->id);
         //CHECK IF THE USER IS EDITING THEIR OWN COMMENT
-        if($comment->id != Auth::user()->id){
+        if($comment->user_id != Auth::user()->id){
             return response()->json([
                 'success'=>false,
                 'message'=>'Unauthorized Access!!!'
@@ -64,7 +64,7 @@ class CommentsController extends Controller
 
     public function comment(Request $request){
        // $comment= Comment::where('journal_id',$request->id)->get();
-       $comment= Comment::orderBy('id','asc')->get();
+       $comment= Comment::orderBy('id','desc')->get();
         //SHOW WHICH USER MADE A PARTICULAR COMMENT ON THE JOURNAL
 
        foreach($comment as $comment){

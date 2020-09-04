@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\journal;
 use App\Comment;
+use App\Likes;
+use App\Dislikes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\User;
@@ -17,8 +19,10 @@ class JournalController extends Controller
 
         $journal=new journal;
         $journal->user_id =Auth::user()->id;
-        
         $journal->about= $request->about;
+        $journal->date= $request->date;
+        $journal->feelings= $request->feelings;
+        $journal->tag= $request->tag;
 
         //CHECK IF JOURNAL ENTRY HAS A PHOTO
     if($request->photo != ''){
@@ -50,6 +54,9 @@ class JournalController extends Controller
             ]);
         }
         $journal->about=$request->about;
+        $journal->date=$request->date;
+        $journal->feelings=$request->feelings;
+        $journal->tag=$request->tag;
         $journal->update();
 
         return response()->json([
@@ -87,7 +94,8 @@ class JournalController extends Controller
 }
 
 public function journal(){
-    $journal= journal::orderBy('id','asc')->get();
+   $journal= journal::orderBy('id','desc')->get();
+
 
 
 
@@ -102,6 +110,33 @@ public function journal(){
 
       //  $journal['commentCount'] = 
         $journal['commentCount'] = count($journal->comment);
+        //GET LIKE COUNT
+        $journal['likesCount'] = count($journal->likes);
+        
+        //GET DISLIKE COUNT
+
+        $journal['DislikesCount'] = count($journal->Dislikes);
+        //CHECK IF USER LIKED THEIR OWN POST
+        $journal['selfLike']=false;
+        foreach($journal->likes as $like){
+            if($like->user_id==Auth::user()->id){
+                $journal['selfLike']=true;
+           
+        //CHECK IF USER DISLIKED THEIR OWN POST
+      
+        $journal['selfDisLike']=false;
+        foreach($journal->Dislikes as $Dislike){
+            if($Dislike->user_id==Auth::user()->id){
+                $journal['selfDisLike']=true;
+
+            
+        
+            }
+        }
+
+  
+}
+  }
 
     }
 

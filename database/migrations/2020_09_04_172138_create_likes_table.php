@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJournalTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,15 @@ class CreateJournalTable extends Migration
      */
     public function up()
     {
-        Schema::create('journal', function (Blueprint $table) {
-            //tabel columns and relationships
-            //one user many journal entries
+        Schema::create('likes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('about');
-            $table->date('date');
-            $table->string('feelings');
-            $table->string('tag');
-            $table->string('photo')->default('');
+            $table->unsignedBigInteger('journal_id');
 
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('journal_id')->references('id')->on('journal')->onDelete('cascade');
         });
     }
 
@@ -37,6 +32,6 @@ class CreateJournalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('journal');
+        Schema::dropIfExists('likes');
     }
 }

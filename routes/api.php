@@ -41,6 +41,10 @@ Route::post('journal/delete', 'API\JournalController@delete')->middleware('jwtAu
 Route::post('journal/update', 'API\JournalController@update')->middleware('jwtAuth');
 Route::get('/journal', 'API\JournalController@journal')->middleware('jwtAuth');
 
+//ROUTES FOR JOURNAL LIKES
+Route::post('journal/like', 'API\LikesController@like')->middleware('jwtAuth');
+//ROUTES FOR JOURNAL DISLIKES
+Route::post('journal/dislike', 'API\DislikesController@Dislike')->middleware('jwtAuth');
 
 //ROUTES FOR JOURNAL COMMENTS
 Route::post('comment/entry', 'API\CommentsController@create')->middleware('jwtAuth');
