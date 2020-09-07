@@ -83,4 +83,31 @@ return response()->json([
         }
 
     }
+//THIS FUNCTION IS FOR SAVING NAME,CAMPUS,PHOTO,COURSE,YEAR OF STUDY AND INTERESTS
+public function saveUserInfo(Request $request){
+
+    $user = User::find(Auth::user()->id);
+    $user->name= $request->name;
+    $user->campus= $request->campus;
+    $user->course= $request->course;
+    $user->YOS= $request->YOS;
+    $user->interests= $request->interests;
+    $photo= '';
+    //CHECK IF USER PROVIDED A PHOTO
+    if($request->photo!=''){
+        //USER TIME FOR PHOTO TO PREVENT NAME DUPLICATION
+        $photo =time().'.jpg';
+        //DECODE PHOTO STRING AND SAVE TO STORAGE/PROFILES
+        file_put_contents('storage/profiles/'.$photo,base64_decode($request->photo));
+        $user->photo=$photo;
+
+    }
+$user->update();
+return response()->json([
+    'success'=>true,
+    'photo'=>$photo
+
+]);
+}
+
 }

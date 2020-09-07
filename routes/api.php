@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('register' , 'API\AuthController@register');
 Route::post('login', 'API\AuthController@login');
 Route::get('logout', 'API\AuthController@logout');
+Route::post('save_user_info', 'API\AuthController@saveUserInfo')->middleware('jwtAuth');
 
 
 //routes for categories
