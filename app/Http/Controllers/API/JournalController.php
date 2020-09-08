@@ -11,6 +11,8 @@ use App\Dislikes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\User;
+use App\Http\Resources\tasks;
+
 
 
 class JournalController extends Controller
@@ -94,22 +96,30 @@ class JournalController extends Controller
 }
 
 public function journal(){
-   $journal= journal::orderBy('id','desc')->get();
+   //$journal= journal::orderBy('id','desc')->get();
+
+
+$journals= journal::all();
 
 
 
 
 
-
-  foreach($journal as $journal){
+  foreach($journals as $journal){
      //   GET USER OF THE JOURNAL ENTRY
 
         $journal->user;
         
         //GET COMMENTS COUNT
 
-      //  $journal['commentCount'] = 
+    
         $journal['commentCount'] = count($journal->comment);
+//return (new tasks($journals))->response();
+
+
+  
+
+        
         //GET LIKE COUNT
         $journal['likesCount'] = count($journal->likes);
         
@@ -138,13 +148,18 @@ public function journal(){
 }
   }
 
+ // return (new tasks($journals))->response();
+
     }
-
-
-  return response()->json([
-      'success'=>true,
-      'journal'=>$journal
-  ]);
+    return response()->json([
+        'success'=>true,
+        'journal'=>$journals
+    ]);
+   
+    
+   
 }
+
+
 
 }
