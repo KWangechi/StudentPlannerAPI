@@ -88,10 +88,7 @@ public function saveUserInfo(Request $request){
 
     $user = User::find(Auth::user()->id);
     $user->name= $request->name;
-    $user->campus= $request->campus;
-    $user->course= $request->course;
-    $user->YOS= $request->YOS;
-    $user->interests= $request->interests;
+    
     $photo= '';
     //CHECK IF USER PROVIDED A PHOTO
     if($request->photo!=''){
@@ -102,6 +99,12 @@ public function saveUserInfo(Request $request){
         $user->photo=$photo;
 
     }
+
+    $user->campus= $request->campus;
+    $user->course= $request->course;
+    $user->YOS= $request->YOS;
+    $user->interests= $request->interests;
+    
 $user->update();
 return response()->json([
     'success'=>true,

@@ -15,7 +15,12 @@ class TaskController extends Controller
     public function create(Request $request){
         $task = Task::create([
             'timetable_id' => $request->timetable_id,
-            'task_name' => $request->task_name
+            'task_name' => $request->task_name,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'start-time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'priority' => $request->prority
             
         ]);
 
@@ -37,6 +42,12 @@ public function update(Request $request){
 
         $task->timetable_id = $request->timetable_id;
         $task->task_name = $request->task_name;
+        $task->start_date= $request->start_date;
+        $task->end_date = $request->end_date;
+        $task->start_time = $request->start_time;
+        $task->end_time = $request->end_time;
+        $task->priority = $request->priority;
+
 
 
             $task->timetable;
@@ -64,7 +75,7 @@ public function destroy(Request $request){
 
 }
 
-//methosd for retrieving tasks that belong to a particular timetable 
+//method for retrieving tasks that belong to a particular timetable 
 public function tasks(Request $request){
     $tasks = Task::where('timetable_id', $request->timetable_id)->get();
        

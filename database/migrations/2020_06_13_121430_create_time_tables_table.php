@@ -16,7 +16,7 @@ class CreateTimeTablesTable extends Migration
         Schema::create('time_tables', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
+            //$table->unsignedBigInteger('category_id');
             $table->string('timetable_title');
             $table->date('date');
             $table->time('start_time');
@@ -30,9 +30,10 @@ class CreateTimeTablesTable extends Migration
             ->onDelete('cascade');
 
 
-            //foreign field in the categories table
+            /*foreign field in the categories table
             $table->foreign('category_id')->references('id')
             ->on('categories')->onDelete('cascade');
+*/
 
         });
     }
