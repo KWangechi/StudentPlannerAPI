@@ -49,7 +49,8 @@ class JournalController extends Controller
     public function update(Request $request){
         $journal= journal::find($request->id);
         //CHECK IF THE USER IS EDITING THEIR OWN JOURNAL ENTRY
-        if(Auth::user()->id != $request->id){
+        //CHECK USER ID WITH JOURNAL USER ID
+        if(Auth::user()->id != $request->user_id){
             return response()->json([
                 'success'=>false,
                 'message'=>'you are not authorized to edit this journal entry'
@@ -71,7 +72,7 @@ class JournalController extends Controller
 
     
     public function delete(Request $request){
-        $journal= journal::find($request->id);
+        $journal= journal::find($request->user_id);
         //CHECK IF THE USER IS EDITING THEIR OWN JOURNAL ENTRY
         if(Auth::user()->id != $request->id){
             return response()->json([
