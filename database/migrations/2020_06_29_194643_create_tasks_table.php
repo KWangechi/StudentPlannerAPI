@@ -17,6 +17,11 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('task_id');
             $table->unsignedBigInteger('timetable_id');
             $table->text('task_name');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->string('priority');
             $table->timestamps();
 
 

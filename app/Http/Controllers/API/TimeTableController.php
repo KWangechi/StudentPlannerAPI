@@ -51,7 +51,7 @@ class TimeTableController extends Controller
         
         $timetable = TimeTable::create([
             'user_id' => Auth::user()->id,
-            'category_id' => $request->category_id,
+            //'category_id' => $request->category_id,
             'timetable_title' => $request->timetable_title,
             'date' => $request->date,
             'start_time' => $request->start_time,
@@ -90,7 +90,7 @@ class TimeTableController extends Controller
         }
 
         
-            $timetable->category_id = $request->category_id;
+           // $timetable->category_id = $request->category_id;
             $timetable->timetable_title = $request->timetable_title;
             $timetable->date = $request->date;
             $timetable->start_time = $request->start_time;
