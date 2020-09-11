@@ -63,8 +63,8 @@ class CommentsController extends Controller
     }
 
     public function comment(Request $request){
-       // $comment= Comment::where('journal_id',$request->id)->get();
-       $comment= Comment::orderBy('id','desc')->get();
+        $comment= Comment::where('journal_id',$request->id)->get();
+      // $comment= Comment::orderBy('id','desc')->get();
         //SHOW WHICH USER MADE A PARTICULAR COMMENT ON THE JOURNAL
 
        foreach($comment as $comment){
